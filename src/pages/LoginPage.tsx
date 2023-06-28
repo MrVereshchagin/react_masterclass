@@ -1,13 +1,17 @@
 import { Box, Button, Card, TextField, Typography } from '@mui/material';
 import classes from './LoginPage.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 export interface LoginPageProps {
     
 }
 
 export function LoginPage({}: LoginPageProps) {
+    const navigate = useNavigate();
+
     const onSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
+        navigate('/courses');
     }
 
     return (
