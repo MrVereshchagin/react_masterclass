@@ -1,5 +1,6 @@
 import { Toolbar, Paper, Typography, Tooltip, IconButton, Icon, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination } from "@mui/material";
 import { useState } from "react";
+import { CourseForm } from "../components/CourseForm";
 
 export interface CoursesPageProps {
 
@@ -47,17 +48,23 @@ export function CoursesPage({}: CoursesPageProps) {
 
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
+    const [showForm, setShowForm] = useState(false);
+    const openForm = () => setShowForm(true);
+    const onFormClose = () => setShowForm(false);
+    const onSubmit = () => {};
+
     return <Paper sx={{width: '100%'}}>
         <Toolbar>
             <Typography component='div' variant='h6' sx={{flex: 1}}>
                 Курсы
             </Typography>
             <Tooltip title='Новый курс'>
-                <IconButton>
+                <IconButton onClick={openForm}>
                     <Icon>add</Icon>
                 </IconButton>
             </Tooltip>
         </Toolbar>
+        <CourseForm open={showForm} onClose={onFormClose} onSubmit={onSubmit}/>
         <TableContainer>
             <Table>
                 <TableHead>
